@@ -91,4 +91,4 @@ jobs:
         run: pnpm run setup
 
       - name: Publish to npm
-        run: pnpm ts-scripts publish -t tag npm
+        run: pnpm ts-scripts publish -t latest npm

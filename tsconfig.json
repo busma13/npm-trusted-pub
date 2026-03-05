@@ -18,8 +18,15 @@
         "esModuleInterop": true,
         "resolveJsonModule": true
     },
-    "include": [
-        "src/**/*",
-        "test/**/*"
+    "include": [],
+        "exclude": [
+        "**/node_modules",
+        "**/.*/",
+        "**/build/**/*"
+    ],
+    "references": [
+        {
+            "path": "packages/package_1"
+        },
     ]
 }

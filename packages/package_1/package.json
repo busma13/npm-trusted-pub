@@ -1,0 +1,36 @@
+{
+    "name": "npm-trusted-pub-package_1",
+    "displayName": "Npm Trusted Pub Package 1",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "homepage": "",
+    "bugs": {
+        "url": ""
+    },
+    "repository": "",
+    "license": "MIT",
+    "author": "",
+    "type": "module",
+    "main": "dist/src/index.js",
+    "directories": {
+        "lib": "dist/src"
+    },
+    "scripts": {
+        "build": "tsc --build",
+        "build:watch": "pnpm build --watch"
+    },
+    "dependencies": {
+        "@terascope/scripts": "^2.3.0",
+        "express": "^5.2.1"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "srcMain": "src/index.ts",
+    "terascope": {}
+}
