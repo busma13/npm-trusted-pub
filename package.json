@@ -1,23 +1,51 @@
 {
-  "name": "npm-trusted-pub",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "setup": "pnpm install && pnpm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "packageManager": "pnpm@10.29.3",
-  "dependencies": {
-    "@terascope/scripts": "^2.3.0",
-    "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.6",
-    "typescript": "~5.9.3"
-  }
+    "name": "npm-trusted-pub",
+    "displayName": "Npm Trusted Pub",
+    "version": "1.0.0",
+    "private": "true",
+    "description": "",
+    "keywords": [],
+    "homepage": "",
+    "bugs": {
+        "url": ""
+    },
+    "license": "MIT",
+    "author": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc --build tsconfig.json",
+        "setup": "pnpm install && pnpm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.6",
+        "typescript": "~5.9.3"
+    },
+    "packageManager": "pnpm@10.29.3",
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "documentation": "",
+    "terascope": {
+        "root": true,
+        "target": "esnext",
+        "tests": {
+            "suites": {}
+        },
+        "npm": {
+            "registry": "https://registry.npmjs.org/"
+        },
+        "engines": {
+            "node": ">=22.0.0",
+            "pnpm": ">=10.25.0"
+        },
+        "version": 1,
+        "type": "monorepo",
+        "docker": {
+            "registries": [
+                "terascope/npm-trusted-pub"
+            ]
+        }
+    }
 }
