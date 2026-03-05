@@ -27,7 +27,6 @@ jobs:
         with:
           # NOTE: Hard Coded Node Version
           node-version: 22
-          registry-url: 'https://registry.npmjs.org'
  
       - name: Install and build packages
         run: pnpm install --frozen-lockfile && pnpm run setup
