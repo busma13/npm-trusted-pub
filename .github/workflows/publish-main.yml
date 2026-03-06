@@ -39,5 +39,5 @@ jobs:
         run: pnpm install --frozen-lockfile && pnpm run setup
 
       - name: Publish to npm
-        # run: pnpm ts-scripts publish -t latest npm
-        run: pnpm publish --no-git-checks --provenance
+        run: pnpm ts-scripts publish -t latest npm
+        # run: pnpm publish --no-git-checks --provenance
