@@ -9,6 +9,10 @@ on:
     types:
       - closed
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   publish-tag:
     if: github.event_name == 'release'
