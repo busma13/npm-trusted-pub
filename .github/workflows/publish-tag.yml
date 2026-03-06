@@ -1,4 +1,4 @@
-name: Build and Publish Latest
+name: Build and Publish Tag
 
 on:
   pull_request:
@@ -8,8 +8,8 @@ on:
       - closed
 
 jobs:
-  npm-publish-latest:
+  npm-publish-tag:
     if: github.event.pull_request.merged == true
     uses: ./.github/workflows/npm-publish.yml
     with:
-      type: latest
+      type: tag

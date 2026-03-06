@@ -1,7 +1,7 @@
 {
     "name": "npm-trusted-pub",
     "displayName": "Npm Trusted Pub",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "private": "true",
     "description": "",
     "keywords": [],
