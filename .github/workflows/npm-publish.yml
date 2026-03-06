@@ -32,3 +32,4 @@ jobs:
 
       - name: Publish to npm
         run: pnpm ts-scripts publish -t ${{ inputs.type }} npm
+        
