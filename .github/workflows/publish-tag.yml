@@ -1,18 +1,36 @@
 name: Build and Publish Tag
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
+  workflow_call:
 
 jobs:
   npm-publish-tag:
-    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      id-token: write  # Required for OIDC
       contents: read
-    uses: ./.github/workflows/npm-publish.yml
-    with:
-      type: tag
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # NOTE: Hard Coded Node Version
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install and build packages
+        run: pnpm install --frozen-lockfile && pnpm run setup
+
+      - name: Show OIDC claims
+        run: |
+          curl -s "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore" \
+            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            | jq -R 'split(".")[1] | @base64d | fromjson'
+
+      - name: Publish to npm
+        run: pnpm ts-scripts publish -t tag npm

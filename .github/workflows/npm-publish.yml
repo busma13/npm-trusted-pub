@@ -1,40 +1,20 @@
 name: NPM Publish
 
 on:
-  workflow_call:
-    inputs:
-      type:
-        required: true
-        type: string
+  release:
+    types: [published]
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
 
 jobs:
-  npm-publish:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write  # Required for OIDC
-      contents: read
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
+  publish-tag:
+    if: github.event_name == 'release'
+    uses: ./.github/workflows/publish-tag.yml
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          # NOTE: Hard Coded Node Version
-          node-version: 24
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install and build packages
-        run: pnpm install --frozen-lockfile && pnpm run setup
-
-      - name: Show OIDC claims
-        run: |
-          curl -s "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore" \
-            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            | jq -R 'split(".")[1] | @base64d | fromjson'
-            
-      - name: Publish to npm
-        run: pnpm ts-scripts publish -t ${{ inputs.type }} npm
+  publish-main:
+    if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    uses: ./.github/workflows/publish-main.yml
+    
