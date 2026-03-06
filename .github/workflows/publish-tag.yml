@@ -10,6 +10,9 @@ on:
 jobs:
   npm-publish-tag:
     if: github.event.pull_request.merged == true
+    permissions:
+      id-token: write
+      contents: read
     uses: ./.github/workflows/npm-publish.yml
     with:
       type: tag
