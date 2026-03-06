@@ -29,8 +29,12 @@ jobs:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
+      - name: TEMP check npm version
+        run: npm --version
+
       - name: Install and build packages
         run: pnpm install --frozen-lockfile && pnpm run setup
 
       - name: Publish to npm
-        run: pnpm ts-scripts publish -t latest npm
+        # run: pnpm ts-scripts publish -t latest npm
+        run: pnpm publish --no-git-checks --provenance
